@@ -5,8 +5,16 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
+import { useState } from "react";
  
 export default function Signup() {
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSubmit = (e) => {
+    
+  }
   return (
     <div className="flex items-center justify-center 
      w-screen h-screen bg-cyan-600">
@@ -20,7 +28,7 @@ export default function Signup() {
         Nice to meet you! Enter your details to register.
       </Typography>
       <form className="mt-8 mb-2 w-full max-w-screen-lg 
-      ">
+      " onSubmit={handleSubmit}>
         <div className="mb-1 flex flex-col gap-6">
           <Typography variant="h6" color="blue-gray" className="-mb-3">
             Your Name
@@ -28,6 +36,7 @@ export default function Signup() {
           <Input
             size="lg"
             placeholder="name@mail.com"
+            onChange={(e) => setUsername(e.target.value)}
             className=" !border-t-blue-gray-200 
             focus:!border-t-gray-900"
             labelProps={{
@@ -40,6 +49,7 @@ export default function Signup() {
           <Input
             size="lg"
             placeholder="name@mail.com"
+            onChange={(e) => setEmail(e.target.value)}
             className=" !border-t-blue-gray-200 focus:!border-t-gray-900
             "
             labelProps={{
@@ -54,6 +64,7 @@ export default function Signup() {
             type="password"
             size="lg"
             placeholder="********"
+            onChange={(e) => setPassword(e.target.value)}
             className=" !border-t-blue-gray-200 focus:!border-t-gray-900
             "
             labelProps={{
@@ -85,9 +96,9 @@ export default function Signup() {
         <Typography color="gray" className="mt-4 text-center 
         md:w-full w-10/12 font-normal">
           Already have an account?{" "}
-          <a href="#" className="font-medium text-gray-900 
+          <a href="/login" className="font-medium text-gray-900 
           md:w-full w-10/12">
-            Sign In
+            Login
           </a>
         </Typography>
       </form>
