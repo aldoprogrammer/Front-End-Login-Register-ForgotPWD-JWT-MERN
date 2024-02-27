@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-export const BASE_URL = 'https://back-end-login-register-forgotpwd-jwt.onrender.com';
+export const BASE_URL = 'https://front-end-login-register-forgotpwd-jwt.onrender.com';
 
 // Configure Axios with baseURL and cookies support
 axios.defaults.baseURL = BASE_URL;
