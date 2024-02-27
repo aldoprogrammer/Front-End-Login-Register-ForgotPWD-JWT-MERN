@@ -12,7 +12,7 @@ const Dashboard = () => {
         axios.get('/auth/verify')
         .then(res => {
             if(res.data.status){
-                // console.log(res.data)
+                console.log(res.data)
             }
             else {
                 navigate('/login');
