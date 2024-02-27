@@ -7,11 +7,13 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import Axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export default function Signup() {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const nagivate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +22,9 @@ export default function Signup() {
       email,
       password
     }).then(response => {
-      console.log(response)
+      if(response.data.status ){
+        navigate('/login')
+      }
     }).catch(err => {
       console.log(err)
     })
