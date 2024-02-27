@@ -8,35 +8,18 @@ const Dashboard = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('/auth/verify', { headers: { 'Cache-Control': 'no-cache' } });
-                if (!response.data.status) {
-                    navigate('/login');
-                }
-            } catch (err) {
-                console.error('Error verifying user:', err);
-                navigate('/login');
-            }
-        };
-
-        fetchData();
-    }, [navigate]);
+        const token = localStorage.getItem('token');
+        if (!token) {
+            navigate('/login');
+            return;
+        }
+    });
 
     const handleLogout = async () => {
-        try {
-            await axios.get('/auth/logout', { headers: { 'Cache-Control': 'no-cache' } });
-            clearCookie('token'); // Clear the cookie
+            localStorage.removeItem('token'); // Remove the token from localStorage
             toast.success('Logout Successfully');
             navigate('/login');
-        } catch (err) {
-            console.error('Error logging out:', err);
-            toast.error('An error occurred while logging out');
-        }
-    };
-
-    const clearCookie = (name) => {
-        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;`;
+     
     };
 
     return (

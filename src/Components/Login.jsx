@@ -22,9 +22,10 @@ export default function Login() {
       email,
       password
     }).then(response => {
-      if(response.data.status  ){
+      if(response.data.status  === true){
         toast.success('Login Successfully')
-        
+        const token = response.data.token;
+        localStorage.setItem('token', response.data.token);
         navigate('/dashboard')
       } else {
         toast.error(response.data.message)
