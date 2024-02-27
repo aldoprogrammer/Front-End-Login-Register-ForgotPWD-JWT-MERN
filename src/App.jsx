@@ -5,6 +5,7 @@ import Signup from './Components/Signup'
 import Home from './Components/Home'
 import Login from './Components/Login'
 import ForgotPwd from './Components/ForgotPwd'
+import ResetPwd from './Components/ResetPwd'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,6 +17,7 @@ function App() {
         <Route path="/sign-up" element={<Signup/>} />
         <Route path="/login" element={<Login/>} />
         <Route path='/forgot-pwd' element={<ForgotPwd/>} />
+        <Route path='/resetPassword/:token' element={<ResetPwd/>} />  
       </Routes>
     </BrowserRouter>
   )
