@@ -1,5 +1,5 @@
+import axios from 'axios'; // Import axios directly
 import { Button } from '@material-tailwind/react';
-import axios from '../config/config';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -25,15 +25,18 @@ const Dashboard = () => {
 
     const handleLogout = async () => {
         try {
-            const response = await axios.get('/auth/logout', { headers: { 'Cache-Control': 'no-cache' } });
-            if (response.data.status) {
-                toast.success('Logout Successfully');
-                navigate('/login');
-            }
+            await axios.get('/auth/logout', { headers: { 'Cache-Control': 'no-cache' } });
+            clearCookie('token'); // Clear the cookie
+            toast.success('Logout Successfully');
+            navigate('/login');
         } catch (err) {
             console.error('Error logging out:', err);
             toast.error('An error occurred while logging out');
         }
+    };
+
+    const clearCookie = (name) => {
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;`;
     };
 
     return (
