@@ -12,8 +12,9 @@ import { useNavigate } from 'react-router-dom'
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const nagivate = useNavigate()
+  const navigate = useNavigate()
 
+  Axios.defaults.withCredentials = true
   const handleSubmit = (e) => {
     e.preventDefault();
     Axios.post('http://localhost:3001/auth/login', {
@@ -34,7 +35,7 @@ export default function Login() {
         className="p-5 md:w-2/5 w-10/12"
       >
         <Typography variant="h4" color="blue-gray">
-          Sign Up
+          Login
         </Typography>
         <Typography color="gray" className="mt-1 font-normal">
           Nice to meet you! Enter your details to register.
