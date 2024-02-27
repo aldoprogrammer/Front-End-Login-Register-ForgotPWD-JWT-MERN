@@ -9,20 +9,19 @@ import { useState } from "react";
 import Axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-export default function Login() {
+export default function ForgotPwd() {
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const navigate = useNavigate()
 
   Axios.defaults.withCredentials = true
   const handleSubmit = (e) => {
     e.preventDefault();
-    Axios.post('http://localhost:3001/auth/login', {
+    Axios.post('http://localhost:3001/auth/forgot-pwd', {
       email,
-      password
     }).then(response => {
       if(response.data.status ){
-        navigate('/')
+        alert('check your email')
+        navigate('/login')
       }
     }).catch(err => {
       console.log(err)
@@ -35,10 +34,7 @@ export default function Login() {
         className="p-5 md:w-2/5 w-10/12"
       >
         <Typography variant="h4" color="blue-gray">
-          Login
-        </Typography>
-        <Typography color="gray" className="mt-1 font-normal">
-          Nice to meet you! Enter your details to register.
+          Reset Password
         </Typography>
         <form className="mt-8 mb-2 w-full max-w-screen-lg 
       " onSubmit={handleSubmit}>
@@ -57,58 +53,21 @@ export default function Login() {
               }}
             />
 
-            <Typography variant="h6" color="blue-gray" className="-mb-3">
-              Password
-            </Typography>
-            <Input
-              type="password"
-              size="lg"
-              placeholder="********"
-              onChange={(e) => setPassword(e.target.value)}
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900
-            "
-              labelProps={{
-                className: "before:content-none after:content-none",
-              }}
-            />
+           
           </div>
-          <Checkbox
-            label={
-              <Typography
-                variant="small"
-                color="gray"
-                className="flex items-center font-normal"
-              >
-                I agree the
-                <a
-                  href="#"
-                  className="font-medium transition-colors hover:text-gray-900"
-                >
-                  &nbsp;Terms and Conditions
-                </a>
-              </Typography>
-            }
-            containerProps={{ className: "-ml-2.5" }}
-          />
+         
           <Button className="mt-6 w-full" type="submit">
-            Login
+            Send Reset Link
           </Button>
           <Typography color="gray" className="mt-4 text-center 
          font-normal">
             Dont have an account?{" "}
-            <a href="/sign-up" className="font-medium text-gray-900 
+            <a href="/signup" className="font-medium text-gray-900 
           ">
               Register
             </a>
           </Typography>
-          <Typography color="gray" className="mt-4 text-center 
-         font-normal">
-            Forgot password?{" "}
-            <a href="/forgot-pwd" className="font-medium text-gray-900 
-          ">
-              Reset Here
-            </a>
-          </Typography>
+         
         </form>
       </Card>
     </div>
