@@ -13,6 +13,7 @@ const Home = () => {
         <Link to='/sign-up'>
           <Button block>Register</Button>
         </Link>
+        
     
     </div>
   );
