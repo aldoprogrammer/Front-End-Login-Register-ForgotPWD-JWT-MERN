@@ -2,6 +2,7 @@ import { Button } from '@material-tailwind/react'
 import axios from '../config/config';
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 
 const Dashboard = () => {
@@ -24,12 +25,13 @@ const Dashboard = () => {
         axios.get('/auth/logout')
         .then(res => {
             if(res.data.status){
+                toast.success('Logout Successfully')
                 navigate('/login');
             }
         }).catch(err => console.log(err))
     }
   return (
-    <div>
+    <div className='bg-cyan-600 w-screen h-screen flex items-center justify-center gap-10'>
         <p>Dashboard</p>
 
         <Button onClick={handleLogout}>Logout</Button>

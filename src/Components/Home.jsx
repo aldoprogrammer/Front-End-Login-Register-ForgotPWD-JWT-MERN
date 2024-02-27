@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   return (
     <div className='flex items-center justify-center 
-    h-full gap-4 mt-10'>
+    h-screen gap-4 bg-cyan-600 w-screen'>
     
         <Link to='/login' className=''>
           <Button block>Login</Button>
