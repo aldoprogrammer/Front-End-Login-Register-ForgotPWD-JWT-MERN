@@ -23,6 +23,7 @@ export default function Login() {
       password
     }).then(response => {
       if(response.data.status  ){
+        localStorage.setItem('token', response.data.token);
         toast.success('Login Successfully')
         navigate('/dashboard')
       } else {
