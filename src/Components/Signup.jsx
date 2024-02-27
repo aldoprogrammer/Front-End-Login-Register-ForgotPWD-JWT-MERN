@@ -100,14 +100,14 @@ export default function Signup() {
             }
             containerProps={{ className: "-ml-2.5" }}
           />
-          <Button className="mt-6 md:w-full w-10/12">
+          <Button className="mt-6 w-full" type="submit">
             sign up
           </Button>
           <Typography color="gray" className="mt-4 text-center 
-        md:w-full w-10/12 font-normal">
+         font-normal">
             Already have an account?{" "}
             <a href="/login" className="font-medium text-gray-900 
-          md:w-full w-10/12">
+          ">
               Login
             </a>
           </Typography>
