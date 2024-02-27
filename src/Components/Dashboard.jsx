@@ -12,7 +12,7 @@ const Dashboard = () => {
         axios.get('/auth/verify')
         .then(res => {
             if(res.data.status){
-                console.log(res.data)
+                // console.log(res.data)
             }
             else {
                 navigate('/login');
@@ -21,15 +21,18 @@ const Dashboard = () => {
 
     })
 
-    const handleLogout = () => {
-        axios.get('/auth/logout')
-        .then(res => {
-            if(res.data.status){
-                toast.success('Logout Successfully')
+    const handleLogout = async () => {
+        try {
+            const response = await axios.get('/auth/logout');
+            if(response.data.status){
+                toast.success('Logout Successfully');
                 navigate('/login');
             }
-        }).catch(err => console.log(err))
+        } catch (err) {
+            console.log(err);
+        }
     }
+    
   return (
     <div className='bg-cyan-600 w-screen h-screen flex items-center justify-center gap-10'>
         <p>Dashboard</p>
