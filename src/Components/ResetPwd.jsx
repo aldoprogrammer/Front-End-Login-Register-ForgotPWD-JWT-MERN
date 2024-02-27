@@ -6,27 +6,27 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useState } from "react";
-import Axios from 'axios'
+import axios from '../config/config';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { toast } from "react-toastify";
 
 export default function ResetPwd() {
   const [password, setPassword] = useState('')
   const { token } = useParams()
   const navigate = useNavigate()
 
-  Axios.defaults.withCredentials = true
   const handleSubmit = (e) => {
     e.preventDefault();
-    Axios.post('http://localhost:3001/auth/reset-pwd/' + token, {
+    axios.post('/auth/reset-pwd/' + token, {
       password,
     }).then(response => {
       if(response.data.status ){
-        alert('Password Successfully Reset')
+        toast.success('Password Successfully Reset')
         navigate('/login')
       }
-      console.log(response.data)
     }).catch(err => {
-      console.log(err)
+      toast.error(err.response.data.message)
+      
     })
   }
   return (

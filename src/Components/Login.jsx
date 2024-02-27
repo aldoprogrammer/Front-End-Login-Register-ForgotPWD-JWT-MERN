@@ -6,31 +6,31 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useState } from "react";
-import Axios from 'axios'
+import axios from '../config/config';
 import { useNavigate } from 'react-router-dom'
+import { toast } from "react-toastify";
 
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
 
-  Axios.defaults.withCredentials = true
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    Axios.post('http://localhost:3001/auth/login', {
+    axios.post('/auth/login', {
       email,
       password
     }).then(response => {
       if(response.data.status  ){
-        navigate('/')
-      }
-      alert(JSON.stringify(response.data));
-    }).catch(err => {
-      if (err.response && err.response.status === 401) {
-        alert('Password is wrong');
+        toast.success('Login Successfully')
+        navigate('/dashboard')
       } else {
-        console.log(err);
+        toast.error(response.data.message)
       }
+      
+    }).catch(err => {
+      toast.error(err);
     })
   }
   return (

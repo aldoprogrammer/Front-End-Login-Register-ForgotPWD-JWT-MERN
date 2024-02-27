@@ -6,8 +6,9 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useState } from "react";
-import Axios from 'axios'
+import axios from '../config/config';
 import { useNavigate } from 'react-router-dom'
+import { toast } from "react-toastify";
 
 export default function Signup() {
   const [username, setUsername] = useState('')
@@ -17,16 +18,17 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    Axios.post('http://localhost:3001/auth/signup', {
+    axios.post('/auth/signup', {
       username,
       email,
       password
     }).then(response => {
       if(response.data.status ){
+        toast.success('You are successfully registered')
         navigate('/login')
       }
     }).catch(err => {
-      console.log(err)
+      toast.error(err.response.data.message)
     })
   }
   return (

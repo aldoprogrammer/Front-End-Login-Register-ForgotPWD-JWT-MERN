@@ -1,31 +1,38 @@
 import { Button } from '@material-tailwind/react'
-import axios from 'axios'
+import axios from '../config/config';
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { BASE_URL } from '../config/config'
 
 
 const Dashboard = () => {
     const navigate = useNavigate();
-    const apiURL = BASE_URL;
-
+    
     useEffect(() => {
-        axios.get(`${apiURL}/auth/verify`)
+        axios.get('/auth/verify')
         .then(res => {
             if(res.data.status){
-                console.log(res.data)
+                // console.log(res.data)
             }
             else {
-                navigate('/login');s
+                navigate('/login');
             }
         })
 
     })
+
+    const handleLogout = () => {
+        axios.get('/auth/logout')
+        .then(res => {
+            if(res.data.status){
+                navigate('/login');
+            }
+        }).catch(err => console.log(err))
+    }
   return (
     <div>
         <p>Dashboard</p>
 
-        <Button>Logout</Button>
+        <Button onClick={handleLogout}>Logout</Button>
           
         
     </div>

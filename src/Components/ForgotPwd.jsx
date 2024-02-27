@@ -6,24 +6,26 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useState } from "react";
-import Axios from 'axios'
+import axios from '../config/config';
 import { useNavigate } from 'react-router-dom'
+import { toast } from "react-toastify";
 
 export default function ForgotPwd() {
   const [email, setEmail] = useState('')
   const navigate = useNavigate()
 
-  Axios.defaults.withCredentials = true
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    Axios.post('http://localhost:3001/auth/forgot-pwd', {
+    axios.post('/auth/forgot-pwd', {
       email,
     }).then(response => {
       if(response.data.status ){
-        alert('We have sent a link to reset your password')
+        toast.success('We have sent a link to reset your password')
         navigate('/login')
       }
     }).catch(err => {
+      toast.error(err.response.data.message)
       console.log(err)
     })
   }
