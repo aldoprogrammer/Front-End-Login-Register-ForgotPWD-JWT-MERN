@@ -20,7 +20,7 @@ export default function ForgotPwd() {
       email,
     }).then(response => {
       if(response.data.status ){
-        alert('check your email')
+        alert('We have sent a link to reset your password')
         navigate('/login')
       }
     }).catch(err => {

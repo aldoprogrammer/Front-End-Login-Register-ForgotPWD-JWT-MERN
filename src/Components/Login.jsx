@@ -21,11 +21,16 @@ export default function Login() {
       email,
       password
     }).then(response => {
-      if(response.data.status ){
+      if(response.data.status  ){
         navigate('/')
       }
+      alert(JSON.stringify(response.data));
     }).catch(err => {
-      console.log(err)
+      if (err.response && err.response.status === 401) {
+        alert('Password is wrong');
+      } else {
+        console.log(err);
+      }
     })
   }
   return (

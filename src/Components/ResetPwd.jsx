@@ -21,9 +21,10 @@ export default function ResetPwd() {
       password,
     }).then(response => {
       if(response.data.status ){
-        alert('check your email')
+        alert('Password Successfully Reset')
         navigate('/login')
       }
+      console.log(response.data)
     }).catch(err => {
       console.log(err)
     })
